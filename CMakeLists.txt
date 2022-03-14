@@ -97,7 +97,7 @@ set(${PROJECT_NAME}_SOVERSION "1.5")
 
 include(FeatureSummary)
 
-option(${PROJECT_NAME}_QT6 "Build against Qt 6" OFF)
+option(${PROJECT_NAME}_QT6 "Build against Qt 6" ON)
 option(${PROJECT_NAME}_DEVELOPER_MODE "Developer Mode" OFF)
 option(${PROJECT_NAME}_PYTHON_BINDINGS "Build python bindings" OFF)
 option(${PROJECT_NAME}_QTQUICK "Build for QtQuick instead of QtWidgets" OFF)
