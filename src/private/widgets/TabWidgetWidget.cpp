@@ -170,7 +170,7 @@ void TabWidgetWidget::setupTabBarButtons()
 
     auto factory = Config::self().frameworkWidgetFactory();
     m_closeButton = factory->createTitleBarButton(this, TitleBarButtonType::Close);
-    m_floatButton = factory->createTitleBarButton(this, TitleBarButtonType::Float);
+    //m_floatButton = factory->createTitleBarButton(this, TitleBarButtonType::Float);
 
     auto cornerWidget = new QWidget(this);
     cornerWidget->setObjectName(QStringLiteral("Corner Widget"));
@@ -179,13 +179,13 @@ void TabWidgetWidget::setupTabBarButtons()
 
     m_cornerWidgetLayout = new QHBoxLayout(cornerWidget);
 
-    m_cornerWidgetLayout->addWidget(m_floatButton);
+    //m_cornerWidgetLayout->addWidget(m_floatButton);
     m_cornerWidgetLayout->addWidget(m_closeButton);
 
-    connect(m_floatButton, &QAbstractButton::clicked, this, [this] {
-        TitleBar *tb = frame()->titleBar();
-        tb->onFloatClicked();
-    });
+    //connect(m_floatButton, &QAbstractButton::clicked, this, [this] {
+    //    TitleBar *tb = frame()->titleBar();
+    //    tb->onFloatClicked();
+    //});
 
     connect(m_closeButton, &QAbstractButton::clicked, this, [this] {
         TitleBar *tb = frame()->titleBar();

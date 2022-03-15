@@ -239,7 +239,7 @@ void TitleBarWidget::paintEvent(QPaintEvent *)
     titleOpt.initFrom(this);
     style()->drawPrimitive(QStyle::PE_Widget, &titleOpt, &p, this);
     titleOpt.title = title();
-    titleOpt.rect = iconRect().isEmpty() ? rect().adjusted(2, 0, -buttonAreaWidth(), 0)
+    titleOpt.rect = iconRect().isEmpty() ? rect().adjusted(8, 0, -buttonAreaWidth(), 0)
                                          : rect().adjusted(iconRect().right(), 0, -buttonAreaWidth(), 0);
 
     if (isMDI()) {

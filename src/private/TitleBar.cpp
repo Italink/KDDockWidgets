@@ -117,7 +117,6 @@ void TitleBar::updateButtons()
 
 void TitleBar::updateCloseButton()
 {
-
     const bool anyNonClosable = frame() ? frame()->anyNonClosable()
                                         : (floatingWindow() ? floatingWindow()->anyNonClosable()
                                                             : false);
@@ -194,7 +193,6 @@ void TitleBar::setIcon(const QIcon &icon)
 std::unique_ptr<WindowBeingDragged> TitleBar::makeWindow()
 {
     if (!isVisible() && window()->isVisible() && !(Config::self().flags() & Config::Flag_ShowButtonsOnTabBarIfTitleBarHidden)) {
-
         // When using Flag_ShowButtonsOnTabBarIfTitleBarHidden we forward the call from the tab bar's
         // buttons to the title bar's buttons, just to reuse logic
 
@@ -328,7 +326,6 @@ void TitleBar::onCloseClicked()
             }
         }
     } else if (m_floatingWindow) {
-
         if (closeOnlyCurrentTab) {
             if (Frame *f = m_floatingWindow->singleFrame()) {
                 if (DockWidgetBase *dw = f->currentDockWidget()) {
@@ -451,6 +448,7 @@ void TitleBar::onAutoHideClicked()
 
 bool TitleBar::closeButtonEnabled() const
 {
+    qDebug() << m_closeButtonEnabled;
     return m_closeButtonEnabled;
 }
 
