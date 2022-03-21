@@ -29,7 +29,6 @@ class QHBoxLayout;
 QT_END_NAMESPACE
 
 namespace KDDockWidgets {
-
 class Frame;
 class TabBar;
 
@@ -61,7 +60,8 @@ protected:
     void setTabBarAutoHide(bool) override;
     void renameTab(int index, const QString &) override;
     void changeTabIcon(int index, const QIcon &) override;
-
+    void enterEvent(QEnterEvent *event) override;
+    void leaveEvent(QEvent *event) override;
     DockWidgetBase *dockwidgetAt(int index) const override;
     int currentIndex() const override;
 

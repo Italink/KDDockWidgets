@@ -167,7 +167,6 @@ void TabWidgetWidget::setupTabBarButtons()
 {
     if (!(Config::self().flags() & Config::Flag_ShowButtonsOnTabBarIfTitleBarHidden))
         return;
-
     auto factory = Config::self().frameworkWidgetFactory();
     m_closeButton = factory->createTitleBarButton(this, TitleBarButtonType::Close);
     //m_floatButton = factory->createTitleBarButton(this, TitleBarButtonType::Float);
@@ -176,11 +175,11 @@ void TabWidgetWidget::setupTabBarButtons()
     cornerWidget->setObjectName(QStringLiteral("Corner Widget"));
 
     setCornerWidget(cornerWidget, Qt::TopRightCorner);
-
     m_cornerWidgetLayout = new QHBoxLayout(cornerWidget);
 
     //m_cornerWidgetLayout->addWidget(m_floatButton);
     m_cornerWidgetLayout->addWidget(m_closeButton);
+    m_closeButton->setVisible(false);
 
     //connect(m_floatButton, &QAbstractButton::clicked, this, [this] {
     //    TitleBar *tb = frame()->titleBar();
@@ -235,4 +234,14 @@ void TabWidgetWidget::showContextMenu(QPoint pos)
             action->setDisabled(true);
     }
     menu.exec(mapToGlobal(pos));
+}
+
+void KDDockWidgets::TabWidgetWidget::enterEvent(QEnterEvent *event)
+{
+    m_closeButton->show();
+}
+
+void KDDockWidgets::TabWidgetWidget::leaveEvent(QEvent *event)
+{
+    m_closeButton->hide();
 }
