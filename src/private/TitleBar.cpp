@@ -448,7 +448,6 @@ void TitleBar::onAutoHideClicked()
 
 bool TitleBar::closeButtonEnabled() const
 {
-    qDebug() << m_closeButtonEnabled;
     return m_closeButtonEnabled;
 }
 
