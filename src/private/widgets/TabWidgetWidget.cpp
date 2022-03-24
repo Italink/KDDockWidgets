@@ -179,7 +179,6 @@ void TabWidgetWidget::setupTabBarButtons()
 
     //m_cornerWidgetLayout->addWidget(m_floatButton);
     m_cornerWidgetLayout->addWidget(m_closeButton);
-    m_closeButton->setVisible(false);
 
     //connect(m_floatButton, &QAbstractButton::clicked, this, [this] {
     //    TitleBar *tb = frame()->titleBar();
@@ -238,10 +237,10 @@ void TabWidgetWidget::showContextMenu(QPoint pos)
 
 void KDDockWidgets::TabWidgetWidget::enterEvent(QEnterEvent *event)
 {
-    m_closeButton->show();
+    //m_closeButton->show();
 }
 
 void KDDockWidgets::TabWidgetWidget::leaveEvent(QEvent *event)
 {
-    m_closeButton->hide();
+    //m_closeButton->hide();
 }
