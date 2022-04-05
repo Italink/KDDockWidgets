@@ -73,27 +73,27 @@ FrameWidget::~FrameWidget()
 
 void FrameWidget::paintEvent(QPaintEvent *)
 {
-    //if (!isFloating()) {
-    //    QPainter p(this);
-    //    p.setRenderHint(QPainter::Antialiasing);
+    if (!isFloating()) {
+        QPainter p(this);
+        p.setRenderHint(QPainter::Antialiasing);
 
-    //    const qreal penWidth = 1;
-    //    const qreal halfPenWidth = penWidth / 2;
-    //    const QRectF rectf = QWidget::rect();
+        const qreal penWidth = 1;
+        const qreal halfPenWidth = penWidth / 2;
+        const QRectF rectf = QWidget::rect();
 
-    //    const QColor penColor = isOverlayed() ? QColor(0x666666)
-    //                                          : QColor(184, 184, 184, 184);
-    //    QPen pen(penColor);
-    //    pen.setWidthF(penWidth);
-    //    p.setPen(pen);
+        const QColor penColor = isOverlayed() ? QColor(0x666666)
+                                              : QColor(184, 184, 184, 184);
+        QPen pen(penColor);
+        pen.setWidthF(penWidth);
+        p.setPen(pen);
 
-    //    if (isOverlayed()) {
-    //        pen.setJoinStyle(Qt::MiterJoin);
-    //        p.drawRect(rectf.adjusted(halfPenWidth, penWidth, -halfPenWidth, -halfPenWidth));
-    //    } else {
-    //        p.drawRoundedRect(rectf.adjusted(halfPenWidth, halfPenWidth, -halfPenWidth, -halfPenWidth), 2, 2);
-    //    }
-    //}
+        //if (isOverlayed()) {
+        //    pen.setJoinStyle(Qt::MiterJoin);
+        //    p.drawRect(rectf.adjusted(halfPenWidth, penWidth, -halfPenWidth, -halfPenWidth));
+        //} else {
+        //    p.drawRoundedRect(rectf.adjusted(halfPenWidth, halfPenWidth, -halfPenWidth, -halfPenWidth), 2, 2);
+        //}
+    }
 }
 
 QSize FrameWidget::maxSizeHint() const

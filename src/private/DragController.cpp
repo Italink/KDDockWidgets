@@ -854,10 +854,14 @@ WidgetType *DragController::qtTopLevelUnderCursor() const
             if (!PtInRect(&r, globalNativePos)) // Check if window is under cursor
                 continue;
 
-            if (auto tl = qtTopLevelForHWND(hwnd)) {
+            if (QWidgetOrQuick* tl = qtTopLevelForHWND(hwnd)) {
                 const QRect windowGeometry = topLevelGeometry(tl);
 
                 if (windowGeometry.contains(globalPos) && tl->objectName() != QStringLiteral("_docks_IndicatorWindow_Overlay")) {
+                    if (tl->objectName() == QStringLiteral("KDFloatingWindow")) {
+                        auto ret = tl->findChild<QWidget *>(QStringLiteral("KDMainWindow"), Qt::FindChildOption::FindDirectChildrenOnly);
+                        return ret;
+                    }
                     qCDebug(toplevels) << Q_FUNC_INFO << "Found top-level" << tl;
                     return tl;
                 }

@@ -36,6 +36,12 @@ TabWidgetWidget::TabWidgetWidget(Frame *parent)
     , TabWidget(this, parent)
     , m_tabBar(Config::self().frameworkWidgetFactory()->createTabBar(this))
 {
+    connect(parent, &Frame::isInMainWindowChanged, this, [this]() {
+        if (m_closeButton)
+           m_closeButton->setVisible(!this->frame()->isInMainWindow());
+    });
+
+
     setTabBar(static_cast<QTabBar *>(m_tabBar->asWidget()));
     setTabsClosable(Config::self().flags() & Config::Flag_TabsHaveCloseButton);
 
@@ -167,6 +173,7 @@ void TabWidgetWidget::setupTabBarButtons()
 {
     if (!(Config::self().flags() & Config::Flag_ShowButtonsOnTabBarIfTitleBarHidden))
         return;
+
     auto factory = Config::self().frameworkWidgetFactory();
     m_closeButton = factory->createTitleBarButton(this, TitleBarButtonType::Close);
     //m_floatButton = factory->createTitleBarButton(this, TitleBarButtonType::Float);
@@ -175,8 +182,8 @@ void TabWidgetWidget::setupTabBarButtons()
     cornerWidget->setObjectName(QStringLiteral("Corner Widget"));
 
     setCornerWidget(cornerWidget, Qt::TopRightCorner);
-    m_cornerWidgetLayout = new QHBoxLayout(cornerWidget);
 
+    m_cornerWidgetLayout = new QHBoxLayout(cornerWidget);
     //m_cornerWidgetLayout->addWidget(m_floatButton);
     m_cornerWidgetLayout->addWidget(m_closeButton);
 
@@ -200,7 +207,7 @@ void TabWidgetWidget::setupTabBarButtons()
 void TabWidgetWidget::updateMargins()
 {
     const qreal factor = logicalDpiFactor(this);
-    m_cornerWidgetLayout->setContentsMargins(QMargins(0, 0, 2, 0) * factor);
+    m_cornerWidgetLayout->setContentsMargins(QMargins(0, 1, 1, 1) * factor);
     m_cornerWidgetLayout->setSpacing(int(2 * factor));
 }
 
@@ -233,14 +240,4 @@ void TabWidgetWidget::showContextMenu(QPoint pos)
             action->setDisabled(true);
     }
     menu.exec(mapToGlobal(pos));
-}
-
-void KDDockWidgets::TabWidgetWidget::enterEvent(QEnterEvent *event)
-{
-    //m_closeButton->show();
-}
-
-void KDDockWidgets::TabWidgetWidget::leaveEvent(QEvent *event)
-{
-    //m_closeButton->hide();
 }

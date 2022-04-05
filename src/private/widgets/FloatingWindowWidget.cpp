@@ -40,19 +40,19 @@ FloatingWindowWidget::FloatingWindowWidget(Frame *frame, QRect suggestedGeometry
 
 void FloatingWindowWidget::paintEvent(QPaintEvent *ev)
 {
-    if (Config::self().disabledPaintEvents() & Config::CustomizableWidget_FloatingWindow) {
-        QWidget::paintEvent(ev);
-        return;
-    }
+    //if (Config::self().disabledPaintEvents() & Config::CustomizableWidget_FloatingWindow) {
+    //    QWidget::paintEvent(ev);
+    //    return;
+    //}
 
-    QPainter p(this);
-    QPen pen(0x666666);
-    pen.setWidth(1);
-    pen.setJoinStyle(Qt::MiterJoin);
-    p.setPen(pen);
-    const qreal halfPenWidth = p.pen().widthF() / 2;
-    const QRectF rectf = rect();
-    p.drawRect(rectf.adjusted(halfPenWidth, halfPenWidth, -halfPenWidth, -halfPenWidth));
+    //QPainter p(this);
+    //QPen pen(0x666666);
+    //pen.setWidth(1);
+    //pen.setJoinStyle(Qt::MiterJoin);
+    //p.setPen(pen);
+    //const qreal halfPenWidth = p.pen().widthF() / 2;
+    //const QRectF rectf = rect();
+    //p.drawRect(rectf.adjusted(halfPenWidth, halfPenWidth, -halfPenWidth, -halfPenWidth));
 }
 
 bool FloatingWindowWidget::event(QEvent *ev)
