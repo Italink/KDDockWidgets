@@ -110,6 +110,7 @@ void TitleBarWidget::init()
 {
     qCDebug(creation) << "TitleBarWidget" << this;
     m_dockWidgetIcon = new QLabel(this);
+    m_dockWidgetIcon->setVisible(false);
     m_layout->addWidget(m_dockWidgetIcon);
 
     m_layout->addStretch();
@@ -150,9 +151,11 @@ void TitleBarWidget::init()
     connect(this, &TitleBar::iconChanged, this, [this] {
         if (icon().isNull()) {
             m_dockWidgetIcon->setPixmap(QPixmap());
+            m_dockWidgetIcon->setVisible(false);
         } else {
             const QPixmap pix = icon().pixmap(QSize(28, 28));
             m_dockWidgetIcon->setPixmap(pix);
+            m_dockWidgetIcon->setVisible(true);
         }
         update();
     });
